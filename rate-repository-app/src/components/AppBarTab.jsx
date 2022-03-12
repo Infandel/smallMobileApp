@@ -5,7 +5,6 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
     paddingHorizontal: 10
   },
 });
@@ -15,7 +14,7 @@ const AppBar = ({ text, link }) => {
     <View style={styles.container}>
       <Pressable>
         <Link to={link}>
-          <Text fontWeight="bold" fontSize="subheading" color="primary">
+          <Text fontWeight="bold" fontSize="subheading" color="buttonPrimary">
             {text}
           </Text>
         </Link>
