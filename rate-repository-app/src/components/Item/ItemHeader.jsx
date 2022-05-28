@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexGrow: 1,
+    flexShrink: 1
   },
   language: {
     paddingVertical: 10,
