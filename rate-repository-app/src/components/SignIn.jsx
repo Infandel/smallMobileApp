@@ -1,9 +1,11 @@
 import FormikTextInput from './FormInput/FormikTextInput';
 import { Pressable, View, StyleSheet } from 'react-native';
+import { useNavigate } from "react-router-native";
 import Text from './Text';
 import { Formik } from 'formik';
 import theme from '../theme';
 import * as yup from 'yup';
+import useSignIn from '../hooks/useSignIn';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,8 +35,8 @@ const validationSchema = yup.object().shape({
     .min(6, 'Password must be at least 6 characters')
     .required('Password is required')
     .matches(/\w*[a-z]\w*/,  "Password must have a small letter")
-    .matches(/\w*[A-Z]\w*/,  "Password must have a capital letter")
-    .matches(/\d/, "Password must have a number")
+    // .matches(/\w*[A-Z]\w*/,  "Password must have a capital letter")
+    // .matches(/\d/, "Password must have a number")
 });
 
 const initialValues = {
@@ -57,8 +59,19 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = values => {
-    console.log(values);
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const data = await signIn({ username, password });
+      // for redirecting to the list page after successful logging
+      navigate("/", { replace: true });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
