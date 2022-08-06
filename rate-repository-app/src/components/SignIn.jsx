@@ -58,6 +58,15 @@ const SignInForm = ({ onSubmit }) => {
   );
 };
 
+export const SignInContainer = ({ onSubmit }) => {
+
+  return (
+    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
+    </Formik>
+  );
+}
+
 const SignIn = () => {
   const [signIn] = useSignIn();
   const navigate = useNavigate();
@@ -66,19 +75,15 @@ const SignIn = () => {
     const { username, password } = values;
 
     try {
-      const data = await signIn({ username, password });
+      await signIn({ username, password });
       // for redirecting to the list page after successful logging
       navigate("/", { replace: true });
     } catch (e) {
-      console.log(e);
+      console.warn(e);
     }
   };
 
-  return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
-    </Formik>
-  );
+  return <SignInContainer onSubmit={onSubmit} />;
 };
 
 export default SignIn;
