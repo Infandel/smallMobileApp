@@ -15,8 +15,8 @@ const onPressHandler = (repositoryId, navigate) => {
   navigate(`repository/${repositoryId}`, { replace: true });
 };
 
-export const RepositoryListContainer = ({ repositories }) => {
-  const navigate = useNavigate();
+export const RepositoryListContainer = ({ repositories, navigate }) => {
+
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
@@ -38,8 +38,9 @@ export const RepositoryListContainer = ({ repositories }) => {
 
 const RepositoryList = () => {
   const { repositories } = useRepositories();
+  const navigate = useNavigate();
 
-  return <RepositoryListContainer repositories={repositories} />;
+  return <RepositoryListContainer repositories={repositories} navigate={navigate} />;
 };
 
 export default RepositoryList;

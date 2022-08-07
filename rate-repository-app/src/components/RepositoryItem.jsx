@@ -1,9 +1,6 @@
 import { View, StyleSheet, Pressable } from 'react-native';
 import ItemHeader from './Item/ItemHeader';
 import ItemFooter from './Item/ItemFooter';
-import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-native';
-import { GET_REPOSITORY } from '../graphql/queries';
 import PrimaryButton from './PrimaryButton';
 import * as Linking from 'expo-linking';
 
@@ -29,18 +26,6 @@ const onSubmit = (url) => {
 }
 
 const RepositoryItem = ({ item }) => {
-  const { repositoryId } = useParams();
-
-  if (repositoryId) {
-    const { data, loading } = useQuery(GET_REPOSITORY, {
-      fetchPolicy: "cache-and-network",
-      variables: {repositoryId}
-    });
-    if (loading) return null;
-
-    if (!item) item = data.repository
-  }
-
   return (
     <View testID="repositoryItem" style={styles.item}>
       <ItemHeader
