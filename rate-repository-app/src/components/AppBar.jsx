@@ -13,9 +13,8 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     backgroundColor: theme.colors.appBarBackground,
     paddingBottom: 15,
-    paddingLeft: 10,
-    flexDirection: 'row',
-  },
+    paddingLeft: 20,
+  }
 });
 
 const AppBar = () => {
@@ -37,6 +36,10 @@ const AppBar = () => {
     },
     signOut: {
       name: 'Sign out'
+    },
+    review: {
+      name: 'Create a review',
+      link: '/review'
     }
   }
 
@@ -59,11 +62,14 @@ const AppBar = () => {
         <AppBarTab text={tabs.repos.name} link={tabs.repos.link}/>
         {!loggedIn && <AppBarTab text={tabs.signIn.name} link={tabs.signIn.link}/>}
         {loggedIn &&
-          <Pressable onPress={() => logOut()}>
-            <Text fontWeight="bold" fontSize="subheading" color="buttonPrimary">
-              {tabs.signOut.name}
-            </Text>
-          </Pressable>
+          <>
+            <AppBarTab text={tabs.review.name} link={tabs.review.link}/>
+            <Pressable onPress={() => logOut()}>
+              <Text fontWeight="bold" fontSize="subheading" color="buttonPrimary">
+                {tabs.signOut.name}
+              </Text>
+            </Pressable>
+          </>
         }
       </ScrollView>
     </View>

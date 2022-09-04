@@ -1,8 +1,7 @@
 import FormikTextInput from './FormInput/FormikTextInput';
-import { Pressable, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useNavigate } from "react-router-native";
 import PrimaryButton from './PrimaryButton';
-import Text from './Text';
 import { Formik } from 'formik';
 import theme from '../theme';
 import * as yup from 'yup';
@@ -62,7 +61,7 @@ const SignIn = () => {
     const { username, password } = values;
 
     try {
-      await signIn({ username, password });
+      await signIn({ username, password })
       // for redirecting to the list page after successful logging
       navigate("/", { replace: true });
     } catch (e) {

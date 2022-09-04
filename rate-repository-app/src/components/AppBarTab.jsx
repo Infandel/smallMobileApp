@@ -5,7 +5,7 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10
+    paddingRight: 10,
   },
 });
 

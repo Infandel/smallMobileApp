@@ -7,7 +7,7 @@ const useSignIn = () => {
   const apolloClient = useApolloClient();
   const [mutate, result] = useMutation(SIGNIN, {
     onError: (error) => {
-      console.error(error?.networkError?.result?.errors[0].message, error)
+      throw Error(`${error}`)
     }
   });
 

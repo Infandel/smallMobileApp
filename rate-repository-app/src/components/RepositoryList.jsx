@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const onPressHandler = (repositoryId, navigate) => {
-  navigate(`repository/${repositoryId}`, { replace: true });
+  navigate(`/repository/${repositoryId}`, { replace: true });
 };
 
 export const RepositoryListContainer = ({ repositories, navigate }) => {

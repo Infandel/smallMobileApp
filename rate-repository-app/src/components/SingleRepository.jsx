@@ -1,6 +1,7 @@
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import Text from './Text';
+import theme from '../theme';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-native';
 import { GET_REPOSITORY } from '../graphql/queries';
@@ -14,17 +15,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   reviewContainer: {
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.buttonPrimary,
     flexDirection: 'row',
   },
   ratingContainer: {
     margin: 20,
     marginRight: 15,
+    marginTop: 10,
     width: 50,
     height: 50,
     borderRadius: 50 / 2,
     borderWidth: 2,
-    borderColor: 'blue',
+    borderColor: theme.colors.textAlternative,
     justifyContent: 'center',
     alignItems: 'center'
   },
